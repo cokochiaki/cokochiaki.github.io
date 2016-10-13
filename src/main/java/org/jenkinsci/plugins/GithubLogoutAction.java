@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2016 CloudBees, Inc., James Nord, Sam Gleske
+ * Copyright (c) 2016 CloudBees, Inc., James Nord
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -68,14 +68,4 @@ public class GithubLogoutAction implements UnprotectedRootAction {
         return "";
     }
 
-    @Restricted(NoExternalUse.class) // jelly only
-    public String getGitHubText() {
-        SecurityRealm r = Jenkins.getInstance().getSecurityRealm();
-        if (r instanceof GithubSecurityRealm) {
-            GithubSecurityRealm ghsr = (GithubSecurityRealm) r;
-            return (ghsr.getDescriptor().getDefaultGithubWebUri().equals(ghsr.getGithubWebUri()))? "GitHub" : "GitHub Enterprise";
-        }
-        // only called from the Jelly if the GithubSecurityRealm is set...
-        return "";
-    }
 }
